@@ -6,7 +6,7 @@ import styles from "./responsive-layout.module.css";
 import { ReactNode } from "react";
 
 const menuItems = [
-  { label: "Home", href: "/dashboard" },
+  { label: "Home", href: "/" },
   { label: "New Delivery", href: "/dashboard/new-delivery" },
   { label: "My Deliveries", href: "/dashboard/my-deliveries" },
   { label: "Live Drone Tracking", href: "/dashboard/drone-tracking" },
