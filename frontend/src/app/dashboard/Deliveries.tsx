@@ -48,8 +48,6 @@ interface CancelledDelivery {
   isActive?: false;
 }
 
-type Delivery = ActiveDelivery | CompletedDelivery | CancelledDelivery;
-
 export default function Deliveries() {
   const [activeTab, setActiveTab] = useState("active");
   const [searchTerm, setSearchTerm] = useState("");

@@ -1,0 +1,667 @@
+.newDeliveryContainer {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f8fafc;
+  min-height: calc(100vh - 3rem);
+}
+
+.headerSection {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.pageTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
+}
+
+.pageSubtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.deliveryForm {
+  width: 100%;
+}
+
+.formLayout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 2rem;
+}
+
+/* Form Sections */
+.formSection {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.sectionIcon {
+  font-size: 1.25rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+/* Address Fields */
+.addressGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.addressField {
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.addressInput {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  background: #f9fafb;
+  color: #000000;
+  transition: border-color 0.2s;
+}
+
+.addressInput:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: white;
+}
+
+.fieldHint {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+.mapButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.mapButton:hover {
+  background: #e5e7eb;
+}
+
+/* Package Information */
+.packageGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.packageField {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectInput {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  background: #f9fafb;
+  color: #000000;
+  cursor: pointer;
+}
+
+.selectInput:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: white;
+}
+
+.weightInput {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
+  overflow: hidden;
+}
+
+.weightInput:focus-within {
+  border-color: #3b82f6;
+  background: white;
+}
+
+.weightIcon {
+  padding: 0.75rem 0.5rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.weightField {
+  flex: 1;
+  padding: 0.75rem 0.5rem;
+  border: none;
+  background: transparent;
+  font-size: 0.875rem;
+  color: #000000;
+  outline: none;
+}
+
+.weightUnit {
+  padding: 0.75rem 0.75rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.dimensionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dimensionField {
+  display: flex;
+  flex-direction: column;
+}
+
+.dimensionInput {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  background: #f9fafb;
+  color: #000000;
+  text-align: center;
+}
+
+.dimensionInput:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: white;
+}
+
+.descriptionField {
+  display: flex;
+  flex-direction: column;
+}
+
+.descriptionTextarea {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  background: #f9fafb;
+  color: #000000;
+  resize: vertical;
+  font-family: inherit;
+  margin-bottom: 0.75rem;
+}
+
+.descriptionTextarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: white;
+}
+
+.fragileOption {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+}
+
+/* Delivery Speed */
+.speedOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.speedOption {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+  position: relative;
+}
+
+.speedOption:hover {
+  border-color: #9ca3af;
+}
+
+.selectedOption {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.radioInput {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  cursor: pointer;
+}
+
+.speedLabel {
+  display: block;
+  padding: 1rem 1rem 1rem 3rem;
+  cursor: pointer;
+}
+
+.speedHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.speedName {
+  font-weight: 600;
+  color: #1f2937;
+  flex: 1;
+}
+
+.speedBadge {
+  background: #dc2626;
+  color: white;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.speedPrice {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 1.125rem;
+}
+
+.speedDescription {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Special Instructions */
+.instructionsTextarea {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  background: #f9fafb;
+  color: #000000;
+  resize: vertical;
+  font-family: inherit;
+  margin-bottom: 1rem;
+}
+
+.instructionsTextarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: white;
+}
+
+.additionalOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.optionLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.optionText {
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+/* Payment Method */
+.paymentOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.paymentOption {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.paymentOption:hover {
+  border-color: #9ca3af;
+}
+
+.selectedPayment {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.paymentLabel {
+  display: block;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+}
+
+/* Right Column Cards */
+.statusCard,
+.summaryCard,
+.guidelinesCard {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.statusHeader,
+.summaryHeader,
+.guidelinesHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.statusIcon,
+.summaryIcon,
+.guidelinesIcon {
+  font-size: 1.125rem;
+}
+
+.statusTitle,
+.summaryTitle,
+.guidelinesTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.statusItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.statusItem:last-child {
+  border-bottom: none;
+}
+
+.statusLabel {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.statusValue {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.online {
+  color: #10b981;
+}
+
+.optimal {
+  color: #10b981;
+}
+
+.moderate {
+  color: #f59e0b;
+}
+
+/* Order Summary */
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.summaryLabel {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.summaryValue {
+  font-size: 0.875rem;
+  color: #1f2937;
+}
+
+.summaryDivider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 0.75rem 0;
+}
+
+.summaryTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-top: 2px solid #e5e7eb;
+}
+
+.totalLabel {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.totalValue {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.estimatedDelivery {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #f0f9ff;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.deliveryIcon {
+  font-size: 1rem;
+  margin-top: 0.125rem;
+}
+
+.deliveryInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.deliveryTime {
+  font-size: 0.875rem;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.deliveryDuration {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.25rem;
+}
+
+.deliveryNote {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.placeOrderButton {
+  width: 100%;
+  padding: 1rem;
+  background: #1f2937;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 0.75rem;
+}
+
+.placeOrderButton:hover {
+  background: #111827;
+}
+
+.securityNote {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Safety Guidelines */
+.guideline {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.guideline:last-child {
+  border-bottom: none;
+}
+
+.guidelineIcon {
+  font-size: 1rem;
+  margin-top: 0.125rem;
+}
+
+.guidelineText {
+  display: flex;
+  flex-direction: column;
+}
+
+.guidelineTitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 0.125rem;
+}
+
+.guidelineDesc {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .formLayout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .rightColumn {
+    position: static;
+  }
+  
+  .addressGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .packageGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dimensionsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .newDeliveryContainer {
+    padding: 1rem;
+  }
+  
+  .pageTitle {
+    font-size: 1.875rem;
+  }
+  
+  .dimensionsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .speedHeader {
+    flex-wrap: wrap;
+  }
+}
