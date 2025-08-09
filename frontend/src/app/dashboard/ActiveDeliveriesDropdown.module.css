@@ -1,0 +1,129 @@
+.activeDeliveriesSection {
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 100vw;
+}
+
+.dropdownButton {
+  background: #2563eb;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.9rem 1.7rem 0.9rem 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #2563eb22;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.dropdownButton:hover {
+  background: #464555;
+  box-shadow: 0 4px 16px #2563eb33;
+}
+.arrowDown, .arrowUp {
+  display: inline-block;
+  margin-left: 0.5rem;
+  width: 0.8em;
+  height: 0.8em;
+  border-right: 2.5px solid #fff;
+  border-bottom: 2.5px solid #fff;
+  border-radius: 2px;
+  transition: transform 0.2s;
+}
+.arrowDown {
+  transform: rotate(45deg);
+}
+.arrowUp {
+  transform: rotate(-135deg);
+}
+
+.dropdownContent {
+  background: #fff;
+  border-radius: 1.1rem;
+  box-shadow: 0 4px 18px rgba(70, 69, 85, 0.10);
+  padding: 1.5rem 2vw 1.2rem 2vw;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 100vw;
+  animation: fadeIn 0.25s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+.table th, .table td {
+  padding: 0.85rem 1.1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 1rem;
+}
+.table th {
+  color: #464555;
+  font-weight: 600;
+  background: #f7f8fa;
+}
+.status {
+  font-weight: 600;
+  color: #2563eb;
+}
+.packed {
+  color: #2563eb;
+}
+.inflight {
+  color: #dc003e;
+}
+.nearingdelivery {
+  color: #ff576e;
+}
+.trackerLink {
+  color: #2563eb;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.trackerLink:hover {
+  color: #464555;
+}
+.cancelBtn {
+  background: linear-gradient(90deg, #dc003e 0%, #ff576e 100%);
+  color: #fff;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.cancelBtn:hover {
+  background: linear-gradient(90deg, #ff576e 0%, #dc003e 100%);
+  transform: scale(1.04);
+}
+.supportBtn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.supportBtn:hover {
+  background: #464555;
+  transform: scale(1.04);
+}
+.empty {
+  color: #aaa9bc;
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 1.1rem;
+}

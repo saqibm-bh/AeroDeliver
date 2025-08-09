@@ -1,0 +1,251 @@
+
+/* Modern, branded signup page styles with new color palette */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #000000;
+  position: relative;
+}
+
+.container::before {
+  display: none;
+}
+
+.card {
+  background: #000000;
+  padding: 2.5rem 2rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 
+              0 4px 16px rgba(0, 0, 0, 0.2);
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #FFFFFF;
+  position: relative;
+  z-index: 1;
+}
+
+.card::before {
+  display: none;
+}
+
+.logoText {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+}
+
+.subtitle {
+  color: #FFFFFF;
+  margin-bottom: 2rem;
+  font-size: 1.08rem;
+  text-align: center;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input {
+  padding: 0.9rem 1.2rem;
+  border-radius: 0.75rem;
+  border: 2px solid #FFFFFF;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  color: #FFFFFF;
+  background: #000000;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+}
+
+.input:focus {
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1),
+              inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  background: #000000;
+  transform: translateY(-1px);
+}
+
+.input::placeholder {
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.purpleButton {
+  margin-top: 1.2rem;
+  width: 100%;
+  padding: 0.9rem 0;
+  border-radius: 0.75rem;
+  background: #FFFFFF;
+  color: #000000;
+  font-weight: 700;
+  font-size: 1.15rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+}
+
+.purpleButton::before {
+  display: none;
+}
+
+.purpleButton:hover {
+  background: #F5F5F5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.purpleButton:hover::before {
+  display: none;
+}
+
+.purpleButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.linkBlue {
+  margin-top: 1.5rem;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+  display: block;
+  text-align: center;
+  font-size: 1.05rem;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+}
+
+.linkBlue::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #FFFFFF;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.linkBlue:hover {
+  color: #FFFFFF;
+}
+
+.linkBlue:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 400px) {
+  .card {
+    min-width: 90vw;
+    padding: 2rem 1.5rem;
+    border-radius: 1rem;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .logoText {
+    font-size: 2rem;
+  }
+  
+  .input {
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .purpleButton {
+    padding: 0.8rem 0;
+    font-size: 1rem;
+  }
+}
+
+/* Additional responsive styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .card {
+    min-width: 85vw;
+    max-width: 450px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: linear-gradient(145deg, #1A1A1A 0%, #000000 100%);
+    border: 2px solid rgba(244, 161, 168, 0.3);
+  }
+  
+  .title {
+    background: linear-gradient(135deg, #F4A1A8 0%, #FFFFFF 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .logoText {
+    background: linear-gradient(135deg, #F4A1A8 0%, #FFFFFF 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .subtitle {
+    color: #D3D3D3;
+  }
+  
+  .input {
+    background: linear-gradient(145deg, #1A1A1A 0%, #000000 100%);
+    border: 2px solid #4A4A4A;
+    color: #FFFFFF;
+  }
+  
+  .input::placeholder {
+    color: #D3D3D3;
+  }
+  
+  .input:focus {
+    border: 2px solid #E63946;
+    background: #1A1A1A;
+  }
+}
