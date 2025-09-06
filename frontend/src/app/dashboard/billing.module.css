@@ -1,0 +1,122 @@
+/* Billing & Payments - Dark Theme */
+.billingContainer {
+  padding: 1.5rem;
+  background: rgba(0,0,0,0.96);
+  min-height: 100vh;
+  color: #FFFFFF;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+}
+
+.billingHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.headerLeft { display: flex; gap: 1rem; align-items: center; }
+.billingIcon { font-size: 2rem; }
+.billingTitle { font-size: 2rem; font-weight: 700; margin: 0; }
+.billingSubtitle { margin: 0; color: #D1D5DB; }
+
+.headerRight { display: flex; gap: 0.75rem; }
+.exportBtn,
+.historyBtn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #D1D5DB;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.exportBtn:hover,
+.historyBtn:hover { background: rgba(139,92,246,0.2); border-color: rgba(168,85,247,0.3); color: #FFFFFF; }
+
+/* Stats */
+.statsCards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+.statCard {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.statIcon { font-size: 1.25rem; }
+.statInfo { display: flex; flex-direction: column; }
+.statLabel { color: #9CA3AF; font-size: 0.875rem; }
+.statValue { font-size: 1.25rem; font-weight: 700; }
+
+/* Main grid */
+.billingMainContent { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+
+.performanceSection,
+.activitySection {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.sectionTitle { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 0.75rem 0; font-weight: 600; }
+.sectionIcon { font-size: 1rem; }
+
+.performanceContent { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.performanceItem { }
+.performanceLabel { color: #9CA3AF; font-size: 0.875rem; }
+.performanceValue { font-size: 1.125rem; font-weight: 600; }
+.progressBar { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+.progressFill { height: 100%; background: #10B981; }
+
+.activityList { display: flex; flex-direction: column; gap: 0.75rem; }
+.activityItem { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; border-radius: 8px; background: rgba(255,255,255,0.03); }
+.activityInfo {}
+.activityTitle { font-weight: 600; }
+.activityDate { color: #9CA3AF; font-size: 0.875rem; }
+.activityRight { display: flex; gap: 0.75rem; align-items: center; }
+.activityAmount { font-weight: 600; }
+.activityStatus { padding: 0.125rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+.activityStatus.completed { background: rgba(16,185,129,0.2); color: #A7F3D0; }
+.activityStatus.pending { background: rgba(245,158,11,0.2); color: #FDE68A; }
+
+/* Tabs */
+.tabsContainer { margin-bottom: 1rem; }
+.tabButtons { display: flex; gap: 0.5rem; }
+.tabButton { background: transparent; border: 1px solid rgba(255,255,255,0.1); color: #D1D5DB; padding: 0.5rem 0.9rem; border-radius: 8px; cursor: pointer; }
+.tabButton.activeTab { background: #6366F1; border-color: #6366F1; color: #FFFFFF; }
+
+/* Invoices */
+.invoiceSection { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+.invoiceHeader { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.invoiceControls { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 1rem; }
+.searchContainer { flex: 1; }
+.searchInput { width: 100%; padding: 0.6rem 0.8rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; background: rgba(0,0,0,1); color: #FFFFFF; }
+.filterContainer {}
+.statusFilter { padding: 0.6rem 0.8rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; background: rgba(0,0,0,1); color: #FFFFFF; }
+
+.statusSummary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
+.summaryCard { border-radius: 8px; padding: 0.75rem; }
+.summaryNumber { font-weight: 700; }
+.summaryLabel { color: #111827; }
+
+.invoiceList { display: flex; flex-direction: column; gap: 0.75rem; }
+.invoiceItem { display: flex; justify-content: space-between; gap: 1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1rem; }
+.invoiceLeft { flex: 1; }
+.invoiceMainInfo { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+.invoiceId { font-weight: 700; }
+.invoiceStatus { margin-left: 0.5rem; padding: 0.125rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; }
+.invoiceStatus.paid { background: rgba(16,185,129,0.2); color: #A7F3D0; }
+.invoiceStatus.pending { background: rgba(245,158,11,0.2); color: #FDE68A; }
+.invoiceOrder { color: #9CA3AF; }
+.invoiceDetails { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 0.5rem; }
+.invoiceDetail { display: flex; gap: 0.25rem; align-items: center; color: #D1D5DB; }
+.detailIcon { font-size: 0.9rem; }
+.detailLabel { color: #9CA3AF; font-size: 0.875rem; }
+.detailValue { color: #FFFFFF; }
+
+.invoiceActions { display: flex; gap: 0.5rem; }
+.actionButton { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #D1D5DB; padding: 0.5rem 0.75rem; border-radius: 8px; cursor: pointer; }
+.actionButton:hover { background: rgba(139,92,246,0.2); border-color: rgba(168,85,247,0.3); color: #FFFFFF; }

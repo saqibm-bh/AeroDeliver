@@ -1,668 +1,148 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [deliveryAddress, setDeliveryAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [zipCode, setZipCode] = useState("");
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [sendUpdates, setSendUpdates] = useState(false);
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push('/dashboard');
+  };
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      backgroundColor: '#f5f5f5'
-    }}>
-      {/* Left Side - Hero Section */}
-      <div style={{
-        flex: 1,
-        backgroundColor: '#f0f0f0',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '3rem',
-        position: 'relative'
-      }}>
+    <div className="min-h-screen flex bg-black/95 text-white">
+      {/* Left - Hero */}
+      <div className="relative flex-1 flex items-center justify-center px-6 lg:px-12">
         {/* Header */}
-        <div style={{
-          position: 'absolute',
-          top: '2rem',
-          left: '2rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem'
-        }}>
-          <div style={{
-            width: '32px',
-            height: '32px',
-            backgroundColor: '#1a1a1a',
-            borderRadius: '8px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            fontSize: '18px'
-          }}>
-            ✈️
-          </div>
-          <span style={{
-            fontSize: '1.2rem',
-            fontWeight: '600',
-            color: '#1a1a1a'
-          }}>
-            AeroDeliver
-          </span>
+        <div className="absolute top-6 left-6 flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-purple-500 grid place-items-center text-white text-sm">✈️</div>
+          <span className="text-lg font-semibold">AeroDeliver</span>
         </div>
 
-        {/* Support Button */}
-        <div style={{
-          position: 'absolute',
-          top: '2rem',
-          right: '2rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          color: '#666'
-        }}>
-          <span style={{ fontSize: '16px' }}>❓</span>
-          <span>Support</span>
+        {/* Support + Sign in */}
+        <div className="absolute top-6 right-6 flex items-center gap-6 text-gray-300">
+          <Link href="/login" className="font-medium hover:text-white">Sign In</Link>
+          <div className="flex items-center gap-2"><span className="text-base">❓</span><span>Support</span></div>
         </div>
 
-        {/* Sign In Button */}
-        <div style={{
-          position: 'absolute',
-          top: '2rem',
-          right: '8rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem'
-        }}>
-          <Link href="/login" style={{
-            color: '#1a1a1a',
-            textDecoration: 'none',
-            fontWeight: '500'
-          }}>
-            Sign In
-          </Link>
-        </div>
+        {/* Content */}
+        <div className="max-w-xl text-center">
+          <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-white/10 border border-white/10 grid place-items-center text-3xl">✈️</div>
 
-        {/* Main Content */}
-        <div style={{
-          textAlign: 'center',
-          maxWidth: '500px'
-        }}>
-          {/* Logo */}
-          <div style={{
-            width: '80px',
-            height: '80px',
-            backgroundColor: '#1a1a1a',
-            borderRadius: '16px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto 1.5rem',
-            color: 'white',
-            fontSize: '32px'
-          }}>
-            ✈️
-          </div>
-
-          <h1 style={{
-            fontSize: '2rem',
-            fontWeight: '600',
-            color: '#1a1a1a',
-            marginBottom: '1rem'
-          }}>
-            Welcome to AeroDeliver
-          </h1>
-
-          <p style={{
-            fontSize: '1.1rem',
-            color: '#666',
-            marginBottom: '2rem',
-            lineHeight: '1.6'
-          }}>
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">Welcome to AeroDeliver</h1>
+          <p className="text-gray-300 text-lg mb-8 px-2">
             Join the future of delivery. Get your orders delivered in minutes, not hours.
           </p>
 
-          {/* Features */}
-          <div style={{
-            textAlign: 'left',
-            marginBottom: '2rem'
-          }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              marginBottom: '1rem',
-              color: '#666'
-            }}>
-              <span>Lightning-fast 15-minute deliveries</span>
-            </div>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              marginBottom: '1rem',
-              color: '#666'
-            }}>
-              <span>Safe delivery to your doorstep</span>
-            </div>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              color: '#666'
-            }}>
-              <span>Fully insured and tracked</span>
-            </div>
+          {/* Bullets */}
+          <div className="text-left space-y-3 text-gray-300 max-w-md mx-auto">
+            <div className="flex items-center gap-3"><span>⚡</span><span>Lightning-fast 15-minute deliveries</span></div>
+            <div className="flex items-center gap-3"><span>🛡️</span><span>Safe delivery to your doorstep</span></div>
+            <div className="flex items-center gap-3"><span>✅</span><span>Fully insured and tracked</span></div>
           </div>
 
-          {/* Customer Rating */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0.5rem',
-            marginBottom: '1rem',
-            color: '#666'
-          }}>
+          {/* Rating */}
+          <div className="mt-6 text-gray-300 flex items-center justify-center gap-2">
             <span>Join 50,000+ satisfied customers</span>
           </div>
+          <div className="flex justify-center gap-1 text-yellow-400 text-lg">★ ★ ★ ★ ★</div>
+          <p className="text-xs text-gray-400 mt-1">4.8/5 average rating</p>
 
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '0.25rem',
-            marginBottom: '0.5rem'
-          }}>
-            <span style={{ color: '#fbbf24', fontSize: '18px' }}>★</span>
-            <span style={{ color: '#fbbf24', fontSize: '18px' }}>★</span>
-            <span style={{ color: '#fbbf24', fontSize: '18px' }}>★</span>
-            <span style={{ color: '#fbbf24', fontSize: '18px' }}>★</span>
-            <span style={{ color: '#fbbf24', fontSize: '18px' }}>★</span>
-          </div>
-
-          <p style={{
-            fontSize: '14px',
-            color: '#999',
-            marginBottom: '2rem'
-          }}>
-            4.8/5 average rating
-          </p>
-
-          {/* Hero Image */}
-          <div style={{
-            width: '100%',
-            height: '200px',
-            backgroundColor: '#e0e0e0',
-            borderRadius: '12px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundImage: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}>
-          </div>
+          {/* Visual */}
+          <div className="mt-8 w-full h-48 rounded-xl bg-gradient-to-tr from-purple-500 to-pink-600" />
         </div>
       </div>
 
-      {/* Right Side - Signup Form */}
-      <div style={{
-        flex: 1,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '1.5rem',
-        backgroundColor: 'white',
-        overflow: 'hidden'
-      }}>
-        <div style={{
-          width: '100%',
-          maxWidth: '380px',
-          maxHeight: '100vh',
-          overflowY: 'auto'
-        }}>
-          <h2 style={{
-            fontSize: '1.5rem',
-            fontWeight: '600',
-            color: '#1a1a1a',
-            marginBottom: '0.25rem'
-          }}>
-            Create your account
-          </h2>
-          
-          <p style={{
-            color: '#666',
-            marginBottom: '1rem',
-            fontSize: '14px'
-          }}>
-            Join thousands enjoying fast drone deliveries
-          </p>
+      {/* Right - Form */}
+      <div className="flex-1 flex items-center justify-center p-4 lg:p-12 bg-black/95">
+        <div className="w-full max-w-md max-h-[100vh] overflow-y-auto">
+          <h2 className="text-2xl font-semibold mb-1">Create your account</h2>
+          <p className="text-gray-300 text-sm mb-4">Join thousands enjoying fast drone deliveries</p>
 
-          <form onSubmit={(e) => e.preventDefault()}>
-            {/* Name Fields */}
-            <div style={{
-              display: 'flex',
-              gap: '0.5rem',
-              marginBottom: '0.75rem'
-            }}>
-              <div style={{ flex: 1 }}>
-                <label style={{
-                  display: 'block',
-                  fontSize: '12px',
-                  fontWeight: '500',
-                  color: '#1a1a1a',
-                  marginBottom: '0.25rem'
-                }}>
-                  First name
-                </label>
-                <div style={{
-                  position: 'relative'
-                }}>
-                  <input
-                    type="text"
-                    placeholder="John"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: '8px 12px',
-                      border: '1px solid #e0e0e0',
-                      borderRadius: '6px',
-                      fontSize: '14px',
-                      backgroundColor: '#f9f9f9',
-                      color: '#000000',
-                      outline: 'none',
-                      transition: 'border-color 0.2s',
-                      boxSizing: 'border-box'
-                    }}
-                    onFocus={(e) => e.target.style.borderColor = '#0070f3'}
-                    onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
-                  />
-                </div>
+          <form onSubmit={handleSubmit} className="space-y-2">
+            {/* Name */}
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className="block text-xs font-medium text-gray-300 mb-1">First name</label>
+                <input value={firstName} onChange={(e)=>setFirstName(e.target.value)} placeholder="John" className="w-full bg-black text-white placeholder:text-gray-400 border border-white/10 rounded-md py-2 px-3 outline-none focus:border-purple-500" />
               </div>
-
-              <div style={{ flex: 1 }}>
-                <label style={{
-                  display: 'block',
-                  fontSize: '12px',
-                  fontWeight: '500',
-                  color: '#1a1a1a',
-                  marginBottom: '0.25rem'
-                }}>
-                  Last name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Doe"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '8px',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '6px',
-                    fontSize: '14px',
-                    backgroundColor: '#f9f9f9',
-                    color: '#000000',
-                    outline: 'none',
-                    transition: 'border-color 0.2s',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#0070f3'}
-                  onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
-                />
+              <div>
+                <label className="block text-xs font-medium text-gray-300 mb-1">Last name</label>
+                <input value={lastName} onChange={(e)=>setLastName(e.target.value)} placeholder="Doe" className="w-full bg-black text-white placeholder:text-gray-400 border border-white/10 rounded-md py-2 px-3 outline-none focus:border-purple-500" />
               </div>
             </div>
 
-            {/* Email Field */}
-            <div style={{ marginBottom: '0.75rem' }}>
-              <label style={{
-                display: 'block',
-                fontSize: '12px',
-                fontWeight: '500',
-                color: '#1a1a1a',
-                marginBottom: '0.25rem'
-              }}>
-                Email address
+            {/* Email */}
+            <div>
+              <label className="block text-xs font-medium text-gray-300 mb-1">Email address</label>
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">✉️</span>
+                <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="john@example.com" className="w-full bg-black text-white placeholder:text-gray-400 border border-white/10 rounded-md py-2 pl-9 pr-3 outline-none focus:border-purple-500" />
+              </div>
+            </div>
+
+            {/* Phone */}
+            <div>
+              <label className="block text-xs font-medium text-gray-300 mb-1">Phone number</label>
+              <input type="tel" value={phoneNumber} onChange={(e)=>setPhoneNumber(e.target.value)} placeholder="(555) 000-0000" className="w-full bg-black text-white placeholder:text-gray-400 border border-white/10 rounded-md py-2 px-3 outline-none focus:border-purple-500" />
+            </div>
+
+
+
+            {/* Passwords */}
+            <div>
+              <label className="block text-xs font-medium text-gray-300 mb-1">Password</label>
+              <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="••••••••" className="w-full bg-black text-white placeholder:text-gray-400 border border-white/10 rounded-md py-2 px-3 outline-none focus:border-purple-500" />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-gray-300 mb-1">Confirm password</label>
+              <input type="password" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} placeholder="••••••••" className="w-full bg-black text-white placeholder:text-gray-400 border border-white/10 rounded-md py-2 px-3 outline-none focus:border-purple-500" />
+            </div>
+
+            {/* Toggles */}
+            <div className="flex items-center justify-between text-sm text-gray-300">
+              <label className="flex items-center gap-2">
+                <input type="checkbox" checked={agreeToTerms} onChange={(e)=>setAgreeToTerms(e.target.checked)} className="w-4 h-4 accent-purple-600" />
+                I agree to the Terms
               </label>
-              <div style={{
-                position: 'relative'
-              }}>
-                <span style={{
-                  position: 'absolute',
-                  left: '10px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  color: '#999',
-                  fontSize: '14px'
-                }}>
-                  ✉️
-                </span>
-                <input
-                  type="email"
-                  placeholder="john@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '8px 8px 8px 32px',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '6px',
-                    fontSize: '14px',
-                    backgroundColor: '#f9f9f9',
-                    color: '#000000',
-                    outline: 'none',
-                    transition: 'border-color 0.2s',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#0070f3'}
-                  onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
-                />
-              </div>
-            </div>
-
-            {/* Phone Number */}
-            <div style={{ marginBottom: '0.75rem' }}>
-              <label style={{
-                display: 'block',
-                fontSize: '12px',
-                fontWeight: '500',
-                color: '#1a1a1a',
-                marginBottom: '0.25rem'
-              }}>
-                Phone number
-              </label>
-              <div style={{
-                position: 'relative'
-              }}>
-                <input
-                  type="tel"
-                  placeholder="(555) 123-4567"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '8px 12px',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '6px',
-                    fontSize: '14px',
-                    backgroundColor: '#f9f9f9',
-                    color: '#000000',
-                    outline: 'none',
-                    transition: 'border-color 0.2s',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#0070f3'}
-                  onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
-                />
-              </div>
-            </div>
-
-            {/* Delivery Address */}
-            <div style={{ marginBottom: '0.75rem' }}>
-              <label style={{
-                display: 'block',
-                fontSize: '12px',
-                fontWeight: '500',
-                color: '#1a1a1a',
-                marginBottom: '0.25rem'
-              }}>
-                Delivery address
-              </label>
-              <div style={{
-                position: 'relative'
-              }}>
-                <input
-                  type="text"
-                  placeholder="123 Main Street"
-                  value={deliveryAddress}
-                  onChange={(e) => setDeliveryAddress(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '8px 12px',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '6px',
-                    fontSize: '14px',
-                    backgroundColor: '#f9f9f9',
-                    color: '#000000',
-                    outline: 'none',
-                    transition: 'border-color 0.2s',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#0070f3'}
-                  onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
-                />
-              </div>
-            </div>
-
-            {/* City and ZIP Code */}
-            <div style={{
-              display: 'flex',
-              gap: '0.5rem',
-              marginBottom: '0.75rem'
-            }}>
-              <div style={{ flex: 1 }}>
-                <label style={{
-                  display: 'block',
-                  fontSize: '12px',
-                  fontWeight: '500',
-                  color: '#1a1a1a',
-                  marginBottom: '0.25rem'
-                }}>
-                  City
-                </label>
-                <input
-                  type="text"
-                  placeholder="New York"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '8px',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '6px',
-                    fontSize: '14px',
-                    backgroundColor: '#f9f9f9',
-                    color: '#000000',
-                    outline: 'none',
-                    transition: 'border-color 0.2s',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#0070f3'}
-                  onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
-                />
-              </div>
-
-              <div style={{ flex: 1 }}>
-                <label style={{
-                  display: 'block',
-                  fontSize: '12px',
-                  fontWeight: '500',
-                  color: '#1a1a1a',
-                  marginBottom: '0.25rem'
-                }}>
-                  ZIP Code
-                </label>
-                <input
-                  type="text"
-                  placeholder="10001"
-                  value={zipCode}
-                  onChange={(e) => setZipCode(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '8px',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '6px',
-                    fontSize: '14px',
-                    backgroundColor: '#f9f9f9',
-                    color: '#000000',
-                    outline: 'none',
-                    transition: 'border-color 0.2s',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#0070f3'}
-                  onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
-                />
-              </div>
-            </div>
-
-            {/* Password Field */}
-            <div style={{ marginBottom: '0.75rem' }}>
-              <label style={{
-                display: 'block',
-                fontSize: '12px',
-                fontWeight: '500',
-                color: '#1a1a1a',
-                marginBottom: '0.25rem'
-              }}>
-                Password
-              </label>
-              <div style={{
-                position: 'relative'
-              }}>
-                <input
-                  type="password"
-                  placeholder="Create password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '8px 12px',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '6px',
-                    fontSize: '14px',
-                    backgroundColor: '#f9f9f9',
-                    color: '#000000',
-                    outline: 'none',
-                    transition: 'border-color 0.2s',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#0070f3'}
-                  onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
-                />
-              </div>
-            </div>
-
-            {/* Confirm Password Field */}
-            <div style={{ marginBottom: '0.75rem' }}>
-              <label style={{
-                display: 'block',
-                fontSize: '12px',
-                fontWeight: '500',
-                color: '#1a1a1a',
-                marginBottom: '0.25rem'
-              }}>
-                Confirm password
-              </label>
-              <div style={{
-                position: 'relative'
-              }}>
-                <input
-                  type="password"
-                  placeholder="Confirm password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '8px 12px',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '6px',
-                    fontSize: '14px',
-                    backgroundColor: '#f9f9f9',
-                    color: '#000000',
-                    outline: 'none',
-                    transition: 'border-color 0.2s',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#0070f3'}
-                  onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
-                />
-              </div>
-            </div>
-
-            {/* Checkboxes */}
-            <div style={{ marginBottom: '1rem' }}>
-              <label style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                fontSize: '12px',
-                color: '#666',
-                cursor: 'pointer',
-                marginBottom: '0.25rem'
-              }}>
-                <input
-                  type="checkbox"
-                  checked={agreeToTerms}
-                  onChange={(e) => setAgreeToTerms(e.target.checked)}
-                  style={{
-                    width: '14px',
-                    height: '14px'
-                  }}
-                />
-                I agree to the{' '}
-                <Link href="/terms" style={{ color: '#0070f3', textDecoration: 'none' }}>
-                  Terms of Service
-                </Link>
-                {' '}and{' '}
-                <Link href="/privacy" style={{ color: '#0070f3', textDecoration: 'none' }}>
-                  Privacy Policy
-                </Link>
-              </label>
-
-              <label style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                fontSize: '12px',
-                color: '#666',
-                cursor: 'pointer'
-              }}>
-                <input
-                  type="checkbox"
-                  checked={sendUpdates}
-                  onChange={(e) => setSendUpdates(e.target.checked)}
-                  style={{
-                    width: '14px',
-                    height: '14px'
-                  }}
-                />
-                Send me delivery updates and offers
+              <label className="flex items-center gap-2">
+                <input type="checkbox" checked={sendUpdates} onChange={(e)=>setSendUpdates(e.target.checked)} className="w-4 h-4 accent-purple-600" />
+                Email me updates
               </label>
             </div>
 
-            {/* Create Account Button */}
-            <button
-              type="submit"
-              style={{
-                width: '100%',
-                padding: '10px',
-                backgroundColor: '#6b7280',
-                color: 'white',
-                border: 'none',
-                borderRadius: '6px',
-                fontSize: '14px',
-                fontWeight: '500',
-                cursor: 'pointer',
-                transition: 'background-color 0.2s'
-              }}
-              onMouseOver={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#4b5563'}
-              onMouseOut={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#6b7280'}
-            >
+            {/* Submit */}
+            <button type="submit" className="w-full py-3 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-medium transition-colors">
               Create account
             </button>
+
+            {/* Divider */}
+            <div className="flex items-center gap-4">
+              <div className="flex-1 h-px bg-white/10" />
+              <span className="text-xs text-gray-400 tracking-widest">OR CONTINUE WITH</span>
+              <div className="flex-1 h-px bg-white/10" />
+            </div>
+
+            {/* Social */}
+            <div className="grid grid-cols-2 gap-3">
+              <button type="button" className="border border-white/10 rounded-lg py-3 bg-transparent text-white/90 hover:bg-purple-500/20 transition-colors">🌐 Google</button>
+              <button type="button" className="border border-white/10 rounded-lg py-3 bg-transparent text-white/90 hover:bg-purple-500/20 transition-colors"> Twitter</button>
+            </div>
+
+            <p className="text-center text-sm text-gray-400">
+              Already have an account? <Link href="/login" className="text-purple-400 hover:text-purple-300">Sign in</Link>
+            </p>
           </form>
         </div>
       </div>

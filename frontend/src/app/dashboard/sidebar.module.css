@@ -1,0 +1,92 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 280px;
+  background: #0b0b0b; /* match page dark background */
+  color: #eaeaea;      /* light text */
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #222; /* subtle divider to blend */
+}
+
+.brand {
+  padding: 20px 24px 8px 24px;
+}
+.brandName {
+  font-weight: 800;
+  font-size: 22px;
+  color: #ffffff;
+}
+.brandTagline {
+  color: #9ca3af; /* muted gray */
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.nav {
+  padding: 12px 12px 8px 12px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: #e5e7eb; /* text-gray-200 */
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.15s ease, color 0.2s ease;
+}
+
+.link:hover {
+  background: #151515; /* slightly lighter than bg */
+  color: #ffffff;
+}
+
+.active {
+  background: #0f1020; /* deep navy/black active pill like screenshot */
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px #1f2937, 0 2px 6px rgba(0,0,0,0.35);
+}
+
+.icon { color: currentColor; }
+
+.label { white-space: nowrap; }
+
+.footer {
+  margin-top: auto;
+  padding: 14px 16px;
+  border-top: 1px solid #1a1a1a; /* blend with dark */
+  background: #0b0b0b;
+}
+
+.logout {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #ef436b; /* rose to match brand accents */
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.logoutIcon { color: #ef436b; }
+
+@media (max-width: 900px) {
+  .sidebar { width: 220px; }
+}
+
+@media (max-width: 700px) {
+  .sidebar { position: static; width: 100%; height: auto; }
+}

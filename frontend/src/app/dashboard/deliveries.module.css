@@ -1,9 +1,10 @@
 /* Deliveries Container */
 .deliveriesContainer {
   padding: 24px;
-  background: #f8fafc;
+  background: rgba(0,0,0,0.96); /* Black/96 */
   min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+  color: #FFFFFF; /* default text */
 }
 
 /* Header Section */
@@ -64,11 +65,12 @@
 
 /* Search Section */
 .searchSection {
-  background: white;
+  background: rgba(255,255,255,0.05);
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 24px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 .searchContainer {
@@ -192,11 +194,12 @@
 }
 
 .deliveryCard {
-  background: white;
-  border: 1px solid #e5e7eb;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 16px;
   padding: 24px;
   transition: all 0.2s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 .deliveryCard:hover {
@@ -237,7 +240,7 @@
 .deliveryId {
   font-size: 18px;
   font-weight: 600;
-  color: #111827;
+  color: #FFFFFF;
   margin: 0 0 4px 0;
 }
 
@@ -331,7 +334,7 @@
 .detailValue {
   font-size: 14px;
   font-weight: 500;
-  color: #111827;
+  color: #FFFFFF;
 }
 
 .completedTime {

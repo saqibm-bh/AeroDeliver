@@ -1,447 +1,132 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push("/dashboard");
+  };
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      backgroundColor: '#f5f5f5'
-    }}>
-      {/* Left Side - Hero Section */}
-      <div style={{
-        flex: 1,
-        backgroundColor: '#f0f0f0',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '3rem',
-        position: 'relative'
-      }}>
+    <div className="min-h-screen flex bg-black/95 text-white">
+      {/* Left - Hero */}
+      <div className="relative flex-1 flex items-center justify-center px-6 lg:px-12">
         {/* Header */}
-        <div style={{
-          position: 'absolute',
-          top: '2rem',
-          left: '2rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem'
-        }}>
-          <div style={{
-            width: '32px',
-            height: '32px',
-            backgroundColor: '#1a1a1a',
-            borderRadius: '8px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            fontSize: '18px'
-          }}>
-          </div>
-          <span style={{
-            fontSize: '1.2rem',
-            fontWeight: '600',
-            color: '#1a1a1a'
-          }}>
-            AeroDeliver
-          </span>
+        <div className="absolute top-6 left-6 flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-purple-500 grid place-items-center text-white text-sm">✈️</div>
+          <span className="text-lg font-semibold">AeroDeliver</span>
         </div>
 
-        {/* Support Button */}
-        <div style={{
-          position: 'absolute',
-          top: '2rem',
-          right: '2rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          color: '#666'
-        }}>
-          <span style={{ fontSize: '16px' }}>❓</span>
+        {/* Support */}
+        <div className="absolute top-6 right-6 flex items-center gap-2 text-gray-300">
+          <span className="text-base">❓</span>
           <span>Support</span>
         </div>
 
-        {/* Main Content */}
-        <div style={{
-          textAlign: 'center',
-          maxWidth: '500px'
-        }}>
-          {/* Logo */}
-          <div style={{
-            width: '80px',
-            height: '80px',
-            backgroundColor: '#1a1a1a',
-            borderRadius: '16px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto 1.5rem',
-            color: 'white',
-            fontSize: '32px'
-          }}>
-            ✈️
-          </div>
+        {/* Content */}
+        <div className="max-w-xl text-center">
+          <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-white/10 border border-white/10 grid place-items-center text-3xl">✈️</div>
 
-          <h1 style={{
-            fontSize: '2rem',
-            fontWeight: '600',
-            color: '#1a1a1a',
-            marginBottom: '1rem'
-          }}>
-            AeroDeliver
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">
+            Drone-First
+            <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent"> Delivery Network</span>
           </h1>
-
-          <p style={{
-            fontSize: '1.1rem',
-            color: '#666',
-            marginBottom: '2rem',
-            lineHeight: '1.6'
-          }}>
-            The future of delivery is here. Fast, reliable, and environmentally friendly.
+          <p className="text-gray-300 text-lg mb-8 px-2">
+            Fast, reliable, and environmentally friendly deliveries.
           </p>
 
           {/* Features */}
-          <div style={{
-            textAlign: 'left',
-            marginBottom: '2rem'
-          }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              marginBottom: '1rem',
-              color: '#666'
-            }}>
-              <span style={{ fontSize: '20px' }}>⏱️</span>
-              <span>Delivery in 15-30 minutes</span>
-            </div>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              marginBottom: '1rem',
-              color: '#666'
-            }}>
-              <span>Safe & secure packaging</span>
-            </div>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              color: '#666'
-            }}>
-              <span>24/7 real-time tracking</span>
-            </div>
+          <div className="text-left space-y-3 text-gray-300 max-w-md mx-auto">
+            <div className="flex items-center gap-3"><span className="text-lg">⏱️</span><span>Delivery in 15-30 minutes</span></div>
+            <div className="flex items-center gap-3"><span className="text-lg">📦</span><span>Safe & secure packaging</span></div>
+            <div className="flex items-center gap-3"><span className="text-lg">📍</span><span>24/7 real-time tracking</span></div>
           </div>
 
-          {/* Drone Image */}
-          <div style={{
-            width: '100%',
-            height: '200px',
-            backgroundColor: '#e0e0e0',
-            borderRadius: '12px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundImage: 'url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDIwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjEwMCIgeT0iNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RHJvbmUgSW1hZ2U8L3RleHQ+Cjwvc3ZnPg==")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}>
-          </div>
+          {/* Visual */}
+          <div className="mt-8 w-full h-48 rounded-xl bg-white/5 border border-white/10" />
         </div>
       </div>
 
-      {/* Right Side - Login Form */}
-      <div style={{
-        flex: 1,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '3rem',
-        backgroundColor: 'white'
-      }}>
-        <div style={{
-          width: '100%',
-          maxWidth: '400px'
-        }}>
-          <h2 style={{
-            fontSize: '2rem',
-            fontWeight: '600',
-            color: '#1a1a1a',
-            marginBottom: '0.5rem'
-          }}>
-            Welcome back
-          </h2>
-          
-          <p style={{
-            color: '#666',
-            marginBottom: '2rem'
-          }}>
-            Sign in to your account to continue
-          </p>
+      {/* Right - Form */}
+      <div className="flex-1 flex items-center justify-center p-6 lg:p-12 bg-black/95">
+        <div className="w-full max-w-md">
+          <h2 className="text-3xl font-semibold mb-1">Welcome back</h2>
+          <p className="text-gray-300 mb-6">Sign in to your account to continue</p>
 
-          <form onSubmit={(e) => e.preventDefault()}>
-            {/* Email Field */}
-            <div style={{ marginBottom: '1rem' }}>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '500',
-                color: '#1a1a1a',
-                marginBottom: '0.5rem'
-              }}>
-                Email address
-              </label>
-              <div style={{
-                position: 'relative'
-              }}>
-                <span style={{
-                  position: 'absolute',
-                  left: '12px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  color: '#999',
-                  fontSize: '16px'
-                }}>
-                  ✉️
-                </span>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Email */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">Email address</label>
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">✉️</span>
                 <input
                   type="email"
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '12px 12px 12px 40px',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '8px',
-                    fontSize: '16px',
-                    backgroundColor: '#f9f9f9',
-                    color: '#000000',
-                    outline: 'none',
-                    transition: 'border-color 0.2s',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#0070f3'}
-                  onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
+                  className="w-full bg-black text-white placeholder:text-gray-400 border border-white/10 rounded-lg py-3 pl-10 pr-3 outline-none focus:border-purple-500"
                 />
               </div>
             </div>
 
-            {/* Password Field */}
-            <div style={{ marginBottom: '1rem' }}>
-              <label style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '500',
-                color: '#1a1a1a',
-                marginBottom: '0.5rem'
-              }}>
-                Password
-              </label>
-              <div style={{
-                position: 'relative'
-              }}>
-                <input
-                  type="password"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '8px',
-                    fontSize: '16px',
-                    backgroundColor: '#f9f9f9',
-                    color: '#000000',
-                    outline: 'none',
-                    transition: 'border-color 0.2s',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#0070f3'}
-                  onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
-                />
-              </div>
+            {/* Password */}
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">Password</label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full bg-black text-white placeholder:text-gray-400 border border-white/10 rounded-lg py-3 px-3 outline-none focus:border-purple-500"
+              />
             </div>
 
-            {/* Remember Me & Forgot Password */}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '1.5rem'
-            }}>
-              <label style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                fontSize: '14px',
-                color: '#666',
-                cursor: 'pointer'
-              }}>
+            {/* Remember / Forgot */}
+            <div className="flex items-center justify-between">
+              <label className="flex items-center gap-2 text-sm text-gray-300 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  style={{
-                    width: '16px',
-                    height: '16px'
-                  }}
+                  className="w-4 h-4 accent-purple-600"
                 />
                 Remember me
               </label>
-              <Link href="/forgot-password" style={{
-                fontSize: '14px',
-                color: '#0070f3',
-                textDecoration: 'none'
-              }}>
-                Forgot password?
-              </Link>
+              <Link href="/forgot-password" className="text-sm text-purple-400 hover:text-purple-300">Forgot password?</Link>
             </div>
 
-            {/* Sign In Button */}
+            {/* Sign in */}
             <button
               type="submit"
-              style={{
-                width: '100%',
-                padding: '12px',
-                backgroundColor: '#1a1a1a',
-                color: 'white',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '16px',
-                fontWeight: '500',
-                cursor: 'pointer',
-                marginBottom: '1.5rem',
-                transition: 'background-color 0.2s'
-              }}
-              onMouseOver={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#333'}
-              onMouseOut={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#1a1a1a'}
+              className="w-full py-3 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-medium transition-colors"
             >
               Sign in
             </button>
 
             {/* Divider */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1rem',
-              marginBottom: '1.5rem'
-            }}>
-              <div style={{
-                flex: 1,
-                height: '1px',
-                backgroundColor: '#e0e0e0'
-              }}></div>
-              <span style={{
-                fontSize: '14px',
-                color: '#999'
-              }}>
-                OR CONTINUE WITH
-              </span>
-              <div style={{
-                flex: 1,
-                height: '1px',
-                backgroundColor: '#e0e0e0'
-              }}></div>
+            <div className="flex items-center gap-4">
+              <div className="flex-1 h-px bg-white/10" />
+              <span className="text-xs text-gray-400 tracking-widest">OR CONTINUE WITH</span>
+              <div className="flex-1 h-px bg-white/10" />
             </div>
 
-            {/* Social Login Buttons */}
-            <div style={{
-              display: 'flex',
-              gap: '1rem',
-              marginBottom: '2rem'
-            }}>
-              <button style={{
-                flex: 1,
-                padding: '12px',
-                border: '1px solid #e0e0e0',
-                borderRadius: '8px',
-                backgroundColor: 'white',
-                fontSize: '16px',
-                color: '#000000',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.5rem'
-              }}>
-                <span>🌐</span>
-                Google
-              </button>
-              <button style={{
-                flex: 1,
-                padding: '12px',
-                border: '1px solid #e0e0e0',
-                borderRadius: '8px',
-                backgroundColor: 'white',
-                fontSize: '16px',
-                color: '#000000',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.5rem'
-              }}>
-                <span>🍎</span>
-                Apple
-              </button>
+            {/* Social */}
+            <div className="grid grid-cols-2 gap-3">
+              <button type="button" className="border border-white/10 rounded-lg py-3 bg-transparent text-white/90 hover:bg-purple-500/20 transition-colors">🌐 Google</button>
+              <button type="button" className="border border-white/10 rounded-lg py-3 bg-transparent text-white/90 hover:bg-purple-500/20 transition-colors"> Twitter</button>
             </div>
 
-            {/* Sign Up Link */}
-            <p style={{
-              textAlign: 'center',
-              fontSize: '14px',
-              color: '#666',
-              marginBottom: '2rem'
-            }}>
-              Don&apos;t have an account?{' '}
-              <Link href="/signup" style={{
-                color: '#0070f3',
-                textDecoration: 'none',
-                fontWeight: '500'
-              }}>
-                Sign up for free
-              </Link>
-            </p>
-
-            {/* Footer Links */}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '1rem',
-              fontSize: '12px',
-              color: '#999',
-              marginBottom: '1rem'
-            }}>
-              <Link href="/privacy" style={{ color: '#999', textDecoration: 'none' }}>
-                Privacy Policy
-              </Link>
-              <Link href="/terms" style={{ color: '#999', textDecoration: 'none' }}>
-                Terms of Service
-              </Link>
-              <Link href="/security" style={{ color: '#999', textDecoration: 'none' }}>
-                Security
-              </Link>
-              <Link href="/status" style={{ color: '#999', textDecoration: 'none' }}>
-                Status
-              </Link>
-            </div>
-
-            <p style={{
-              textAlign: 'center',
-              fontSize: '12px',
-              color: '#999'
-            }}>
-              © 2025 AeroDeliver. All rights reserved.
+            {/* Sign up link */}
+            <p className="text-center text-sm text-gray-400">
+              Don&apos;t have an account? {" "}
+              <Link href="/signup" className="text-purple-400 hover:text-purple-300">Create one</Link>
             </p>
           </form>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import styles from "./dashboard.module.css";
+import styles from "./billing.module.css";
 
 export default function BillingPayments() {
   const [activeTab, setActiveTab] = useState("invoices");

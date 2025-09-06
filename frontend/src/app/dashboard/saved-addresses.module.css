@@ -2,8 +2,9 @@
   padding: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: #f8fafc;
+  background-color: rgba(0,0,0,0.96);
   min-height: calc(100vh - 3rem);
+  color: #FFFFFF;
 }
 
 /* Header Section */
@@ -15,11 +16,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
+  background: rgba(255,255,255,0.05);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .headerText {
@@ -29,13 +30,13 @@
 .headerTitle {
   font-size: 2rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: #FFFFFF;
   margin: 0 0 0.5rem 0;
 }
 
 .headerSubtitle {
   font-size: 1rem;
-  color: #6b7280;
+  color: #D1D5DB;
   margin: 0;
 }
 
@@ -72,16 +73,17 @@
 }
 
 .addressCard {
-  background: white;
+  background: rgba(255,255,255,0.05);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e5e7eb;
-  transition: box-shadow 0.2s;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .addressCard:hover {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.45);
 }
 
 .addressHeader {
@@ -120,7 +122,7 @@
 .addressName {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #1f2937;
+  color: #FFFFFF;
   margin: 0;
 }
 

@@ -14,6 +14,12 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .headerContent {
@@ -112,10 +118,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
+  text-align: center;
 }
 
 .heroLeft {
@@ -157,6 +160,53 @@
   color: #6B7280;
   line-height: 1.6;
   margin: 0;
+}
+
+.heroSubtitle {
+  font-size: 1.125rem;
+  color: #6B7280;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+.heroStats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.heroStat {
+  text-align: center;
+}
+
+.heroStatValue {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #10B981;
+}
+
+.heroStatLabel {
+  display: block;
+  font-size: 0.75rem;
+  color: #6B7280;
+  font-weight: 500;
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.userAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .deliveryForm {

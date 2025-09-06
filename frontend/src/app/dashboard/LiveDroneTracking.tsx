@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import styles from "./dashboard.module.css";
+import styles from "./drone-tracking.module.css";
 
 export default function LiveDroneTracking() {
   const [lastUpdated, setLastUpdated] = useState("02:46:19 PM");
