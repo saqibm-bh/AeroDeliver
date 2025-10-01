@@ -99,7 +99,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
   )
 }
 
-function SocialLink({ href, icon: Icon }: { href: string; icon: React.ComponentType<any> }) {
+function SocialLink({ href, icon: Icon }: { href: string; icon: React.ComponentType<Record<string, unknown>> }) {
   return (
     <Link
       href={href}

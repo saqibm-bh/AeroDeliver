@@ -2,22 +2,63 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+
+type UserRole = 'customer' | 'store_owner' | 'rider';
 
 export default function SignupPage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [role, setRole] = useState<UserRole>('customer');
   const [agreeToTerms, setAgreeToTerms] = useState(false);
-  const [sendUpdates, setSendUpdates] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const router = useRouter();
+  const supabase = createClientComponentClient();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/dashboard');
+    if (password !== confirmPassword) {
+      setError("Passwords don't match");
+      return;
+    }
+    if (!agreeToTerms) {
+      setError("Please accept terms and conditions");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+    setMessage("");
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+          data: {
+            full_name: `${firstName} ${lastName}`,
+            phone: phoneNumber,
+            role: role,
+          }
+        }
+      });
+
+      if (error) throw error;
+
+      setMessage("Check your email for verification link!");
+      setTimeout(() => router.push('/login'), 3000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Signup failed');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -98,7 +139,15 @@ export default function SignupPage() {
               <input type="tel" value={phoneNumber} onChange={(e)=>setPhoneNumber(e.target.value)} placeholder="(555) 000-0000" className="w-full bg-black text-white placeholder:text-gray-400 border border-white/10 rounded-md py-2 px-3 outline-none focus:border-purple-500" />
             </div>
 
-
+            {/* Role Selection */}
+            <div>
+              <label className="block text-xs font-medium text-gray-300 mb-1">I want to join as</label>
+              <select value={role} onChange={(e)=>setRole(e.target.value as UserRole)} className="w-full bg-black text-white border border-white/10 rounded-md py-2 px-3 outline-none focus:border-purple-500">
+                <option value="customer">Customer</option>
+                <option value="store_owner">Store Owner</option>
+                <option value="rider">Delivery Rider</option>
+              </select>
+            </div>
 
             {/* Passwords */}
             <div>
@@ -110,21 +159,21 @@ export default function SignupPage() {
               <input type="password" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} placeholder="••••••••" className="w-full bg-black text-white placeholder:text-gray-400 border border-white/10 rounded-md py-2 px-3 outline-none focus:border-purple-500" />
             </div>
 
+            {/* Error/Success Messages */}
+            {error && <div className="text-red-400 text-sm bg-red-400/10 p-2 rounded">{error}</div>}
+            {message && <div className="text-green-400 text-sm bg-green-400/10 p-2 rounded">{message}</div>}
+
             {/* Toggles */}
             <div className="flex items-center justify-between text-sm text-gray-300">
               <label className="flex items-center gap-2">
                 <input type="checkbox" checked={agreeToTerms} onChange={(e)=>setAgreeToTerms(e.target.checked)} className="w-4 h-4 accent-purple-600" />
                 I agree to the Terms
               </label>
-              <label className="flex items-center gap-2">
-                <input type="checkbox" checked={sendUpdates} onChange={(e)=>setSendUpdates(e.target.checked)} className="w-4 h-4 accent-purple-600" />
-                Email me updates
-              </label>
             </div>
 
             {/* Submit */}
-            <button type="submit" className="w-full py-3 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-medium transition-colors">
-              Create account
+            <button type="submit" disabled={loading} className="w-full py-3 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-medium transition-colors disabled:opacity-50">
+              {loading ? "Creating account..." : "Create account"}
             </button>
 
             {/* Divider */}

@@ -1,9 +1,9 @@
 import { createSupabaseClient } from './supabase';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
 // API Response types
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   data?: T;
   error?: string;
   message?: string;
@@ -125,47 +125,84 @@ class ApiClient {
   }
 
   // Products methods
-  async getProducts(): Promise<ApiResponse<any[]>> {
-    return this.request<any[]>('/products');
+  // Products methods
+  async getProducts(): Promise<ApiResponse<Product[]>> {
+    return this.request<Product[]>('/products');
   }
 
-  async getProduct(productId: string): Promise<ApiResponse<any>> {
-    return this.request<any>(`/products/${productId}`);
+  async getProduct(productId: string): Promise<ApiResponse<Product>> {
+    return this.request<Product>(`/products/${productId}`);
   }
 
   // Stores methods
-  async getStores(): Promise<ApiResponse<any[]>> {
-    return this.request<any[]>('/stores');
+  async getStores(): Promise<ApiResponse<Store[]>> {
+    return this.request<Store[]>('/stores');
   }
 
-  async getStore(storeId: string): Promise<ApiResponse<any>> {
-    return this.request<any>(`/stores/${storeId}`);
+  async getStore(storeId: string): Promise<ApiResponse<Store>> {
+    return this.request<Store>(`/stores/${storeId}`);
   }
 
   // Addresses methods
-  async getAddresses(userId: string): Promise<ApiResponse<any[]>> {
-    return this.request<any[]>(`/addresses/user/${userId}`);
+  async getAddresses(userId: string): Promise<ApiResponse<Address[]>> {
+    return this.request<Address[]>(`/addresses/user/${userId}`);
   }
 
-  async createAddress(addressData: any): Promise<ApiResponse<any>> {
-    return this.request<any>('/addresses', {
+  async createAddress(addressData: Partial<Address>): Promise<ApiResponse<Address>> {
+    return this.request<Address>('/addresses', {
       method: 'POST',
       body: JSON.stringify(addressData),
     });
   }
 
-  async updateAddress(addressId: string, addressData: any): Promise<ApiResponse<any>> {
-    return this.request<any>(`/addresses/${addressId}`, {
+  async updateAddress(addressId: string, addressData: Partial<Address>): Promise<ApiResponse<Address>> {
+    return this.request<Address>(`/addresses/${addressId}`, {
       method: 'PUT',
       body: JSON.stringify(addressData),
     });
   }
 
-  async deleteAddress(addressId: string): Promise<ApiResponse<any>> {
-    return this.request<any>(`/addresses/${addressId}`, {
+  async deleteAddress(addressId: string): Promise<ApiResponse<Address>> {
+    return this.request<Address>(`/addresses/${addressId}`, {
       method: 'DELETE',
     });
   }
 }
 
 export const apiClient = new ApiClient();
+
+// Product interface
+export interface Product {
+  id: string;
+  name: string;
+  price: number;
+  description?: string;
+  imageUrl?: string;
+  storeId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Store interface
+export interface Store {
+  id: string;
+  name: string;
+  ownerId: string;
+  address: string;
+  rating?: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Address interface
+export interface Address {
+  id: string;
+  userId: string;
+  street: string;
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
+  createdAt: string;
+  updatedAt: string;
+}

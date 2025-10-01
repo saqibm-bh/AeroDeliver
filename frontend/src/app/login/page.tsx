@@ -2,16 +2,47 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
+  const supabase = createClientComponentClient();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    router.push("/dashboard");
+    setLoading(true);
+    setError("");
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) throw error;
+
+      // Get user role and redirect accordingly
+      const { data: { user } } = await supabase.auth.getUser();
+      const userRole = user?.user_metadata?.role || 'customer';
+      
+      const roleRedirects = {
+        customer: '/customer/dashboard',
+        store_owner: '/stores/dashboard', 
+        rider: '/riders/dashboard',
+        admin: '/admin/dashboard'
+      };
+
+      router.push(roleRedirects[userRole as keyof typeof roleRedirects] || '/customer/dashboard');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -88,6 +119,13 @@ export default function LoginPage() {
               />
             </div>
 
+            {/* Error Message */}
+            {error && (
+              <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3 text-red-400 text-sm">
+                {error}
+              </div>
+            )}
+
             {/* Remember / Forgot */}
             <div className="flex items-center justify-between">
               <label className="flex items-center gap-2 text-sm text-gray-300 cursor-pointer">
@@ -105,9 +143,10 @@ export default function LoginPage() {
             {/* Sign in */}
             <button
               type="submit"
-              className="w-full py-3 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-medium transition-colors"
+              disabled={loading}
+              className="w-full py-3 rounded-lg bg-purple-600 hover:bg-purple-700 disabled:bg-purple-600/50 text-white font-medium transition-colors"
             >
-              Sign in
+              {loading ? 'Signing in...' : 'Sign in'}
             </button>
 
             {/* Divider */}

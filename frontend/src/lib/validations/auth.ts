@@ -1,6 +1,5 @@
 // src/lib/validations/auth.ts
 import { z } from 'zod';
-import { UserRole } from '@/types/auth';
 
 export const signupSchema = z.object({
   email: z

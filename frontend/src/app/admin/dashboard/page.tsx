@@ -12,10 +12,8 @@ import {
   DollarSign, 
   TrendingUp, 
   Package, 
-  AlertCircle,
   Activity,
   Star,
-  MapPin,
   Clock
 } from 'lucide-react';
 import Link from 'next/link';
@@ -28,7 +26,7 @@ export default async function AdminDashboard() {
     redirect('/login');
   }
   
-  const { data: { user } } = await supabase.auth.getUser();
+  await supabase.auth.getUser();
 
   // Mock data - replace with actual API calls
   const platformMetrics = {

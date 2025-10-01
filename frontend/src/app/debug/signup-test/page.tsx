@@ -1,12 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-
-// Conditional import to avoid server-side issues
-let createClientComponentClient: any = null;
-if (typeof window !== 'undefined') {
-  createClientComponentClient = require("@supabase/auth-helpers-nextjs").createClientComponentClient;
-}
+import React, { useState, useEffect } from "react";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
 export default function SignupTestPage() {
   const [email, setEmail] = useState("");
@@ -15,14 +11,12 @@ export default function SignupTestPage() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const [supabase, setSupabase] = useState<any>(null);
+  const [supabase, setSupabase] = useState<SupabaseClient | null>(null);
 
-  React.useEffect(() => {
-    // Only initialize Supabase on client side
-    if (typeof window !== 'undefined' && createClientComponentClient) {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
       try {
-        const client = createClientComponentClient();
-        setSupabase(client);
+        setSupabase(createClientComponentClient());
       } catch (error) {
         setError(`Failed to initialize Supabase: ${error}`);
       }
@@ -42,7 +36,7 @@ export default function SignupTestPage() {
     setError("");
 
     try {
-      const { data, error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -77,11 +71,10 @@ export default function SignupTestPage() {
     setError("");
 
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      const { data: { user } } = await supabase.auth.getUser();
-      
-      setMessage(`Session: ${session ? 'Active' : 'None'}\nUser: ${user ? user.email : 'None'}`);
-      console.log("Auth state:", { session, user });
+  const { data: { session } } = await supabase.auth.getSession();
+  const { data: { user } } = await supabase.auth.getUser();
+  setMessage(`Session: ${session ? 'Active' : 'None'}\nUser: ${user ? user.email : 'None'}`);
+  console.log("Auth state:", { session, user });
     } catch (err) {
       setError("Error checking auth state");
       console.error("Auth check error:", err);

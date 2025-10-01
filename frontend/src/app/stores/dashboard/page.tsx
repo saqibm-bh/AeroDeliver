@@ -9,11 +9,9 @@ import {
   Package, 
   DollarSign, 
   TrendingUp, 
-  Clock, 
   Eye,
   ShoppingCart,
   Star,
-  Users,
   Plus,
   Edit,
   BarChart3
@@ -28,7 +26,7 @@ export default async function StoreOwnerDashboard() {
     redirect('/login');
   }
   
-  const { data: { user } } = await supabase.auth.getUser();
+  await supabase.auth.getUser();
 
   // Mock data - replace with actual API calls
   const storeMetrics = {
@@ -74,7 +72,7 @@ export default async function StoreOwnerDashboard() {
           <div>
             <h1 className="text-3xl font-bold text-foreground">Store Dashboard</h1>
             <p className="text-muted-foreground">
-              Welcome back! Here's what's happening with your store today.
+              Welcome back! Here&apos;s what&apos;s happening with your store today.
             </p>
           </div>
           <Link

@@ -5,8 +5,9 @@ import { Bell, Search, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
+type BasicUser = { email?: string | null } | null | undefined;
 interface DashboardHeaderProps {
-  user: any;
+  user: BasicUser;
   userRole: 'customer' | 'store_owner' | 'rider' | 'admin';
 }
 

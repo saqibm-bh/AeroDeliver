@@ -69,7 +69,7 @@ function AuthCallbackContent() {
         
         try {
           // Verify token with backend - this is where we'd get user role
-          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/auth/verify`, {
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/auth/verify`, {
             headers: {
               Authorization: `Bearer ${accessToken}`
             }

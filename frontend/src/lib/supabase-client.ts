@@ -1,9 +1,9 @@
 // src/lib/supabase-client.ts
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
-let supabaseClient: any = null;
+let supabaseClient: ReturnType<typeof createClientComponentClient> | null = null;
 
-export function getSupabaseClient() {
+export function getSupabaseClient(): ReturnType<typeof createClientComponentClient> | null {
   if (!supabaseClient && typeof window !== 'undefined') {
     supabaseClient = createClientComponentClient();
   }

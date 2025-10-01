@@ -1,45 +1,52 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-
-// Conditional import to avoid server-side issues
-let createClientComponentClient: any = null;
-if (typeof window !== 'undefined') {
-  createClientComponentClient = require("@supabase/auth-helpers-nextjs").createClientComponentClient;
-}
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import type { SupabaseClient, User, Session } from "@supabase/supabase-js";
 
 export default function SupabaseDebugPage() {
   const [connectionStatus, setConnectionStatus] = useState<string>("Checking...");
-  const [user, setUser] = useState<any>(null);
-  const [session, setSession] = useState<any>(null);
-  const [testResults, setTestResults] = useState<any[]>([]);
+  const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
+  const [testResults, setTestResults] = useState<Array<{ test: string; status: string; data: unknown }>>([]);
   const [loading, setLoading] = useState(false);
-  const [supabase, setSupabase] = useState<any>(null);
+  const [supabase, setSupabase] = useState<SupabaseClient | null>(null);
 
   useEffect(() => {
-    // Only initialize Supabase on client side
-    if (typeof window !== 'undefined' && createClientComponentClient) {
+    if (typeof window !== 'undefined') {
       try {
         const client = createClientComponentClient();
         setSupabase(client);
-        checkSupabaseConnection(client);
-        getAuthState(client);
+        (async () => {
+          // Inline versions to avoid external deps in effect
+          try {
+            const { error } = await client.from('users').select('count').limit(1);
+            setConnectionStatus(error ? `Error: ${error.message}` : 'Connected successfully');
+          } catch (err) {
+            setConnectionStatus(`Connection failed: ${err}`);
+          }
+          try {
+            const { data: { session } } = await client.auth.getSession();
+            const { data: { user } } = await client.auth.getUser();
+            setSession(session);
+            setUser(user);
+          } catch (err) {
+            console.error('Error getting auth state:', err);
+          }
+        })();
       } catch (error) {
         setConnectionStatus(`Failed to initialize Supabase: ${error}`);
       }
     }
   }, []);
 
-  const checkSupabaseConnection = async (client: any = supabase) => {
+  const checkSupabaseConnection = async (client: SupabaseClient | null = supabase) => {
     if (!client) {
       setConnectionStatus("Supabase client not initialized");
       return;
     }
-
     try {
-      // Try to make a simple query to test connection
-      const { data, error } = await supabase.from('users').select('count').limit(1);
-      
+      const { error } = await client.from('users').select('count').limit(1);
       if (error) {
         setConnectionStatus(`Error: ${error.message}`);
       } else {
@@ -50,13 +57,11 @@ export default function SupabaseDebugPage() {
     }
   };
 
-  const getAuthState = async (client: any = supabase) => {
+  const getAuthState = async (client: SupabaseClient | null = supabase) => {
     if (!client) return;
-    
     try {
       const { data: { session } } = await client.auth.getSession();
       const { data: { user } } = await client.auth.getUser();
-      
       setSession(session);
       setUser(user);
     } catch (err) {
@@ -71,11 +76,11 @@ export default function SupabaseDebugPage() {
     }
 
     setLoading(true);
-    const results = [];
+  const results: Array<{ test: string; status: string; data: unknown }> = [];
 
     try {
       // Test 1: Check users table
-      results.push({ test: "Users table access", status: "Running..." });
+  results.push({ test: "Users table access", status: "Running...", data: null });
       const { data: users, error: usersError } = await supabase
         .from('users')
         .select('id, email, role')
@@ -88,7 +93,7 @@ export default function SupabaseDebugPage() {
       };
 
       // Test 2: Check orders table
-      results.push({ test: "Orders table access", status: "Running..." });
+  results.push({ test: "Orders table access", status: "Running...", data: null });
       const { data: orders, error: ordersError } = await supabase
         .from('orders')
         .select('id, status')
@@ -101,7 +106,7 @@ export default function SupabaseDebugPage() {
       };
 
       // Test 3: Check products table
-      results.push({ test: "Products table access", status: "Running..." });
+  results.push({ test: "Products table access", status: "Running...", data: null });
       const { data: products, error: productsError } = await supabase
         .from('products')
         .select('id, name, price')

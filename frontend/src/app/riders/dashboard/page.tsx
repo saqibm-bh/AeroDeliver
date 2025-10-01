@@ -29,7 +29,7 @@ export default async function RiderDashboard() {
     redirect('/login');
   }
   
-  const { data: { user } } = await supabase.auth.getUser();
+  await supabase.auth.getUser();
 
   // Mock data - replace with actual API calls
   const riderMetrics = {

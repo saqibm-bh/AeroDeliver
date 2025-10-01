@@ -27,8 +27,9 @@ export function useSignup(): UseSignupResult {
       const result = await authService.signUp(data);
       setSuccess(true);
       setMessage(result.message || 'Account created successfully!');
-    } catch (err: any) {
-      setError(err.message || 'Signup failed. Please try again.');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Signup failed. Please try again.';
+      setError(message);
       setSuccess(false);
     } finally {
       setIsLoading(false);

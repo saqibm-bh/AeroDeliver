@@ -21,6 +21,15 @@ let toastCount = 0;
 export function useToast(): ToastProps {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
+  const dismiss = useCallback((toastId?: string) => {
+    setToasts((currentToasts) => {
+      if (toastId) {
+        return currentToasts.filter((toast) => toast.id !== toastId);
+      }
+      return [];
+    });
+  }, []);
+
   const toast = useCallback(
     ({ title, description, action, variant = "default" }: Omit<Toast, "id">) => {
       const id = (++toastCount).toString();
@@ -39,17 +48,8 @@ export function useToast(): ToastProps {
         dismiss(id);
       }, 5000);
     },
-    []
+    [dismiss]
   );
-
-  const dismiss = useCallback((toastId?: string) => {
-    setToasts((currentToasts) => {
-      if (toastId) {
-        return currentToasts.filter((toast) => toast.id !== toastId);
-      }
-      return [];
-    });
-  }, []);
 
   return {
     toast,

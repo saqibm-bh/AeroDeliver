@@ -32,9 +32,10 @@ export class AuthService {
         message: 'Account created successfully! Please check your email to verify your account.'
       };
 
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Signup failed';
       console.error('Signup error:', error);
-      throw new Error(error.message || 'Signup failed');
+      throw new Error(message);
     }
   }
 

@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { Star, Quote } from "lucide-react"
+import Image from "next/image"
 
 export default function Testimonials() {
   const ref = useRef(null)
@@ -64,7 +65,7 @@ export default function Testimonials() {
             >
               <Quote className="w-8 h-8 text-purple-400/50 mb-4" />
 
-              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">"{testimonial.content}"</p>
+              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">&quot;{testimonial.content}&quot;</p>
 
               <div className="flex items-center mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
@@ -73,10 +74,12 @@ export default function Testimonials() {
               </div>
 
               <div className="flex items-center">
-                <img
+                <Image
                   src={testimonial.avatar || "/placeholder.svg"}
                   alt={testimonial.name}
-                  className="w-12 h-12 rounded-full mr-4"
+                  width={48}
+                  height={48}
+                  className="rounded-full mr-4"
                 />
                 <div>
                   <h4 className="text-white font-semibold text-sm sm:text-base">{testimonial.name}</h4>
